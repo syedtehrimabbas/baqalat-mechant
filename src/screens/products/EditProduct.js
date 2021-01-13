@@ -13,14 +13,14 @@ import Spinner from '../../common/Spinner';
 import {Typography} from '../../theme/Typography';
 import colors from '../../theme/colors';
 
-const AddProduct = ({navigation}) => {
+const EditProduct = ({navigation, route}) => {
   const [loading, setLoading] = React.useState(false);
   const [images, setimages] = React.useState([]);
   const [title, settitle] = React.useState('');
   const [des, setdes] = React.useState('');
   const [Category, setCategory] = React.useState('');
   const [tag, settag] = React.useState('');
-
+  const {item} = route.params;
   const selectImages = async () => {
     try {
       const results = await DocumentPicker.pickMultiple({
@@ -60,15 +60,22 @@ const AddProduct = ({navigation}) => {
 
       alert('Please select some images');
     } else {
-      ApiServices.addproduct(title, des, Category, images, (res) => {
-        setLoading(false);
-        if (res.response.status == 200) {
-          alert(res.response.message);
-          navigation.goBack();
-        } else {
-          alert(res.response.message);
-        }
-      });
+      ApiServices.editProduct(
+        item.product_id,
+        title,
+        des,
+        Category,
+        images,
+        (res) => {
+          setLoading(false);
+          if (res.response.status == 200) {
+            alert(res.response.message);
+            navigation.goBack();
+          } else {
+            alert(res.response.message);
+          }
+        },
+      );
     }
   };
 
@@ -85,7 +92,7 @@ const AddProduct = ({navigation}) => {
 
         <BackButtonHeader
           nav={navigation}
-          title="Add Product"
+          title="Edit Product"
           showSearchButton={false}
         />
 
@@ -170,4 +177,4 @@ const ImageInput = ({onImageSelector}) => {
     </TouchableOpacity>
   );
 };
-export default AddProduct;
+export default EditProduct;

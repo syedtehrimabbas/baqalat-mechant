@@ -3,12 +3,12 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'Baqalat_Merchant' do
+target 'baqalatMerchant' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
-  target 'Baqalat_MerchantTests' do
+  target 'baqalatMerchantTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -23,10 +23,10 @@ target 'Baqalat_Merchant' do
   end
 end
 
-target 'Baqalat_Merchant-tvOS' do
-  # Pods for Baqalat_Merchant-tvOS
+target 'baqalatMerchant-tvOS' do
+  # Pods for baqalatMerchant-tvOS
 
-  target 'Baqalat_Merchant-tvOSTests' do
+  target 'baqalatMerchant-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
